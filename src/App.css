@@ -1,0 +1,35 @@
+:root {
+  --Dark-Blue: hsl(209, 23%, 22%);
+  --Very-Dark-Blue: hsl(207, 26%, 17%);
+  --Very-Dark-Blue-B: hsl(200, 15%, 8%);
+  --Dark-Gray: hsl(0, 0%, 52%);
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --White: hsl(0, 0%, 100%);
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+body {
+  background-color: var(--Very-Light-Gray);
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+}
+#nav-title{
+  font-weight: 800;
+}
+#dark-mode{
+  font-weight: 600;
+}
+.inputs-component{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem;
+}
