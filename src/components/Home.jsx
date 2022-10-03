@@ -40,20 +40,36 @@ function Home() {
     if (inputText !== "") setCountryByName(filtered);
   };
   return (
-    <main className="grid grid-cols-3 place-items-center gap-4 mx-4">
-      {allCountries && !inputText
-        ? allCountries.map((country) => {
-            return (
-              <CardComponent
-                name={country.name}
-                image={country.flag}
-                capital={country.capital}
-                region={country.region}
-                population={country.population}
-              />
-            );
-          })
-        : countryByName.map((country) => {
+    <>
+      {showRegionComponent === false ? (
+        <main className="grid grid-cols-3 place-items-center gap-4 mx-4">
+          {allCountries && !inputText
+            ? allCountries.map((country) => {
+                return (
+                  <CardComponent
+                    name={country.name}
+                    image={country.flag}
+                    capital={country.capital}
+                    region={country.region}
+                    population={country.population}
+                  />
+                );
+              })
+            : countryByName.map((country) => {
+                return (
+                  <CardComponent
+                    name={country.name}
+                    image={country.flag}
+                    capital={country.capital}
+                    region={country.region}
+                    population={country.population}
+                  />
+                );
+              })}
+        </main>
+      ) : (
+        <main className="grid grid-cols-3 place-items-center gap-4 mx-4">
+          {countryByRegion.map((country) => {
             return (
               <CardComponent
                 name={country.name}
@@ -64,7 +80,9 @@ function Home() {
               />
             );
           })}
-    </main>
+        </main>
+      )}
+    </>
   );
 }
 export { Home };
