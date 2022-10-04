@@ -47,9 +47,7 @@ nav {
   padding: 2rem;
 }
 #big-flag {
-  /* max-width: 500px;
-  max-height: 500px; */
-  background-color: yellowgreen;
+  max-width: 430px;
 }
 #big-flag img {
   display: block;
