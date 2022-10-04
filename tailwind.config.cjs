@@ -3,7 +3,8 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens:{
-      "xms": {"min": "0", "max": "425px"},
+      "xxsm": {"min": "0px", "max": "425px"},
+      "xs" : {"min": "426px","max":"639px"},
       'sm': {'min': '640px', 'max': '767px'},
       'md': {'min': '768px', 'max': '1023px'},
       'lg': {'min': '1024px', 'max': '1279px'},
