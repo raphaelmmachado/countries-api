@@ -41,9 +41,37 @@ function IndividualCountry() {
           className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col xxsm:flex-col items-center
          justify-center gap-4 min-w-full mt-4"
         >
-          <figure id="big-flag" className="">
-            <img src={country.flags.svg} alt="flag" className="sm:block" />
-          </figure>
+          <div className="flex flex-col">
+            <figure id="big-flag" className="">
+              <img src={country.flags.svg} alt="flag" className="sm:block" />
+            </figure>
+            <div className="flex flex-row items-center align-middle">
+              <a href={country.maps.googleMaps} target="_blank">
+                {" "}
+                <div
+                  className="flex flex-row align-middle
+               items-center mt-2 border-2 border-zinc-200 rounded-md
+               p-2 w-fit"
+                >
+                  <GrMapLocation size={24} />
+                  <p className="text-lg ml-2">
+                    <span className="font-bold text-lg text-blue-500">
+                      {" "}
+                      Location:
+                    </span>{" "}
+                    {country.subregion}, {country.region}
+                  </p>
+                </div>
+              </a>
+              <a
+                className="text-blue-500 ml-2 align-middle"
+                href={`https://en.wikipedia.org/wiki/${country.name.common}`}
+                target="_blank"
+              >
+                <strong className="text-lg">Wikipedia</strong>{" "}
+              </a>
+            </div>
+          </div>
           <div className="flex flex-col">
             <h3 className="text-[2.5rem] font-bold mb-4">
               {country.name.official}
@@ -55,29 +83,24 @@ function IndividualCountry() {
                   {country.name.common}
                 </p>
                 <p>
+                  <span className="font-bold">Population: </span>{" "}
+                  {country.population}
+                </p>
+                <p>
+                  <span className="font-bold">Capital: </span> {Object.values(country.capital).map(keys=> `${keys}, `)}
+                </p>
+                <p>
                   <span className="font-bold">Native name: </span>
                   <em>
                     {Object.values(country.name.nativeName).map(
-                      (key) => `${key.common} -`
+                      (key) => `${key.common}, `
                     )}
                   </em>
                 </p>
                 <p>
                   <span className="font-bold">Languages: </span>
-                  {Object.values(country.languages).map((key) => `${key} - `)}
+                  {Object.values(country.languages).map((key) => `${key}, `)}
                 </p>
-
-                <p>
-                  <span className="font-bold">Population: </span>{" "}
-                  {country.population}
-                </p>
-                <p>
-                  <span className="font-bold">Capital: </span> {country.capital}
-                </p>
-
-                <a href={`https://en.wikipedia.org/wiki/${country.name.common}`} target="_blank">
-                    <strong className="text-blue-500">Wikipedia</strong>{" "}
-                </a>
               </div>
               <div className="leading-8 max-w-[280px] ">
                 <p>
@@ -114,20 +137,6 @@ function IndividualCountry() {
                 </p>
               </div>
             </div>
-            <a href={country.maps.googleMaps} target="_blank">
-              {" "}
-              <div
-                className="flex flex-row align-middle
-               items-center mt-2 border-2 border-zinc-200 rounded-md
-               p-2 w-fit"
-              >
-                <GrMapLocation size={24} />
-                <p className="text-lg ml-2">
-                  <span className="font-bold text-lg text-blue-500"> Location:</span>{" "}
-                  {country.subregion}, {country.region}
-                </p>
-              </div>
-            </a>
           </div>
         </section>
       )}
