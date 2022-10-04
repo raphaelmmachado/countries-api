@@ -10,6 +10,7 @@ function IndividualCountry() {
   useEffect(() => {
     getData();
   }, []);
+
   const getData = async () => {
     try {
       const response = await axios(
@@ -24,13 +25,13 @@ function IndividualCountry() {
   return (
     <main className="p-2">
       <div
-        className="max-w-[80px] border-2
-       border-zinc-200 px-2 ml-6 rounded-lg"
+        className="max-w-[80px] border
+       border-stone-900 px-2 ml-6 rounded-md"
       >
         <Link to="/">
           <div className="flex flex-row items-center justify-center align-middle">
             <GoArrowLeft />
-            <div>Back</div>
+            <div className="font-bold">Back</div>
           </div>
         </Link>
       </div>
@@ -41,17 +42,17 @@ function IndividualCountry() {
          justify-center gap-4 min-w-full mt-4"
         >
           <figure id="big-flag" className="">
-            <img src={country.flags.svg} alt="flag" className="sm:block"/>
+            <img src={country.flags.svg} alt="flag" className="sm:block" />
           </figure>
           <div className="flex flex-col">
             <h3 className="text-[2.5rem] font-bold mb-4">
-              {country.name.common}
+              {country.name.official}
             </h3>
-            <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-2 ">
+            <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-4 ">
               <div className="leading-8 max-w-[320px] ">
                 <p>
-                  <span className="font-bold">Oficial name:</span>{" "}
-                  {country.name.official}
+                  <span className="font-bold">Common name:</span>{" "}
+                  {country.name.common}
                 </p>
                 <p>
                   <span className="font-bold">Native name: </span>
@@ -73,6 +74,10 @@ function IndividualCountry() {
                 <p>
                   <span className="font-bold">Capital: </span> {country.capital}
                 </p>
+
+                <a href={`https://en.wikipedia.org/wiki/${country.name.common}`} target="_blank">
+                    <strong className="text-blue-500">Wikipedia</strong>{" "}
+                </a>
               </div>
               <div className="leading-8 max-w-[280px] ">
                 <p>
@@ -85,28 +90,40 @@ function IndividualCountry() {
                   <span className="font-bold">Area: </span>{" "}
                   {`${country.area}km²`}
                 </p>
+                {country.borders ? (
+                  <p>
+                    <span className="font-bold">Border:</span>{" "}
+                    {country.borders.join(" ,")}
+                  </p>
+                ) : (
+                  <p>
+                    <span className="font-bold">Is an island </span>
+                  </p>
+                )}
                 <p>
-                  <span className="font-bold">Border:</span>{" "}
-                  {country.borders.join(" ,")}
-                </p>
-                <p>
-                  <span className="font-bold">Independent ?</span>{" "}
+                  <span className="font-bold">Independent?</span>{" "}
                   {country.independent ? "yes" : "no"}
                 </p>
                 <p>
-                <span className="font-bold">UN Member ?</span>{" "}
-                {country.unMember ? "yes" : "no"}
+                  <span className="font-bold">UN Member?</span>{" "}
+                  {country.unMember ? "yes" : "no"}
+                </p>
+                <p>
+                  <span className="font-bold">Em português: </span>{" "}
+                  {country.translations.por.common}
                 </p>
               </div>
             </div>
             <a href={country.maps.googleMaps} target="_blank">
               {" "}
-              <div className="flex flex-row align-middle
+              <div
+                className="flex flex-row align-middle
                items-center mt-2 border-2 border-zinc-200 rounded-md
-               p-2 w-fit">
+               p-2 w-fit"
+              >
                 <GrMapLocation size={24} />
                 <p className="text-lg ml-2">
-                  <span className="font-bold text-lg "> Location:</span>{" "}
+                  <span className="font-bold text-lg text-blue-500"> Location:</span>{" "}
                   {country.subregion}, {country.region}
                 </p>
               </div>

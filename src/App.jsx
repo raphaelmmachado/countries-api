@@ -11,7 +11,7 @@ function App() {
       <ContextProvider>
         <Routes>
           <Route
-            path="/"
+            index
             element={
               <>
                 <Input />

@@ -12,14 +12,14 @@ function CardComponent({ name, image, region, capital, population }) {
       height: "180px",
     },
   };
-
+  const slug = name.toLowerCase().split(" ").join("-")
   return (
     <Card
       sx={{ maxWidth: 345, height: 335 }}
       raised={true}
       id="card"
   
-      onClick={() => navigate(`/country/${name.toLowerCase().split(" ").join("-")}`)}
+      onClick={() => navigate(`/country/${slug}`)}
     >
       <CardMedia
         component="img"
