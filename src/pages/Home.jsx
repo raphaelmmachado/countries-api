@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState, useContext, useMemo } from "react";
 import { CardComponent } from "../components/card/Card.jsx";
 import { Context } from "../context/ContextProvider.jsx";
@@ -27,8 +26,10 @@ function Home() {
   }, [inputText]);
 
   //filter countries based on user select
-  const filterByRegion = useMemo(() =>
-    [...allCountries].filter((country) => country.region === selectByRegion),[selectByRegion]
+  const filterByRegion = useMemo(
+    () =>
+      [...allCountries].filter((country) => country.region === selectByRegion),
+    [selectByRegion]
   );
 
   useEffect(() => {
@@ -48,9 +49,8 @@ function Home() {
     setSpinner(false);
   };
   const filterCountriesByName = () => {
-    const filtered = [...allCountries].filter(
-      (country) =>
-        country.name.common.toLowerCase().includes(inputText)
+    const filtered = [...allCountries].filter((country) =>
+      country.name.common.toLowerCase().includes(inputText)
     );
     if (inputText !== "") setCountryByName(filtered);
   };
@@ -58,7 +58,6 @@ function Home() {
   return (
     <>
       {" "}
-      {spinner && <CircularProgress color="primary" variant="indeterminate" />}
       {showRegionComponent === false ? (
         <main
           ref={gridRef}
@@ -71,6 +70,7 @@ function Home() {
                     key={country.name.common}
                     name={country.name.common}
                     image={country.flags.svg}
+                    imagepng={country.flags.png}
                     capital={country.capital && country.capital[0]}
                     region={country.region}
                     population={country.population}
@@ -80,12 +80,13 @@ function Home() {
             : countryByName.map((country) => {
                 return (
                   <CardComponent
-                    key={country.name.common}
-                    name={country.name.common}
-                    image={country.flags.svg}
-                    capital={country.capital && country.capital[0]}
-                    region={country.region}
-                    population={country.population}
+                  key={country.name.common}
+                  name={country.name.common}
+                  image={country.flags.svg}
+                  imagepng={country.flags.png}
+                  capital={country.capital && country.capital[0]}
+                  region={country.region}
+                  population={country.population}
                   />
                 );
               })}
@@ -98,12 +99,13 @@ function Home() {
           {countryByRegion.map((country) => {
             return (
               <CardComponent
-                key={country.name.common}
-                name={country.name.common}
-                image={country.flags.svg}
-                capital={country.capital && country.capital[0]}
-                region={country.region}
-                population={country.population}
+              key={country.name.common}
+              name={country.name.common}
+              image={country.flags.svg}
+              imagepng={country.flags.png}
+              capital={country.capital && country.capital[0]}
+              region={country.region}
+              population={country.population}
               />
             );
           })}

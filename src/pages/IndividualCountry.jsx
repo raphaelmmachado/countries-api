@@ -73,7 +73,7 @@ function IndividualCountry() {
             </div>
           </div>
           <div className="flex flex-col">
-            <h3 className="text-[2.5rem] font-bold mb-4">
+            <h3 className="text-[2.5rem] font-bold mb-4 max-w-[500px]">
               {country.name.official}
             </h3>
             <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-4 ">

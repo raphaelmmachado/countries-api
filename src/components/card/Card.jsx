@@ -1,52 +1,48 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-function CardComponent({ name, image, region, capital, population }) {
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css"
+function CardComponent({ name, image, imagepng, region, capital, population }) {
   const navigate = useNavigate();
-  const styles = {
-    cardImgStyles: {
-      width: "345px",
-      height: "180px",
-    },
-  };
-  const slug = name.toLowerCase().split(" ").join("-")
+
+  const slug = name.toLowerCase().split(" ").join("-");
   return (
-    <Card
-      sx={{ maxWidth: 345, height: 335 }}
-      raised={true}
-      id="card"
-  
-      onClick={() => navigate(`/country/${slug}`)}
+    <div className="card shadow-2xl rounded-md border-1 border-zinc-300"
+      
     >
-      <CardMedia
-        component="img"
-        image={image}
-        style={styles.cardImgStyles}
-        alt={name}
-      />
-      <CardContent>
-        <Typography variant="h2" component="h2" id="card-title">
-          {name}
-          {/* {name.length > 25 ? `${name.substring(0, 26)}...` : name} */}
-        </Typography>
-        <br />
-        <Typography variant="body1" component="p">
-          Population:
-          <strong> {population}</strong>
-        </Typography>
-        <Typography variant="body1" component="p">
-          Region:
-          <strong> {region}</strong>
-        </Typography>
-        <Typography variant="body1" component="p">
-          Capital:
-          <strong> {capital}</strong>
-        </Typography>
-      </CardContent>
-    </Card>
+        <LazyLoadImage
+          src={image}
+          placeholderSrc={imagepng}
+          effect="blur"
+          alt={name}
+          className="card-image rounded-t-md"
+        />
+      <div className="card-content flex flex-col items-start
+       justify-between p-3">
+        <div>
+          <h2 onClick={() => navigate(`/country/${slug}`)} 
+          className="font-extrabold
+          text-xl hover:cursor-pointer text-blue-500">
+            {name}
+            {/* {name.length > 25 ? `${name.substring(0, 26)}...` : name} */}
+          </h2>
+        </div>
+
+        <div className="font-semibold">
+          <p >
+            Population:
+            <span > {population}</span>
+          </p>
+          <p>
+            Region:
+            <span > {region}</span>
+          </p>
+          <p>
+            Capital:
+            <span > {capital}</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 export { CardComponent };
