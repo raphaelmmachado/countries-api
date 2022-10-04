@@ -61,7 +61,11 @@ function Home() {
       {showRegionComponent === false ? (
         <main
           ref={gridRef}
-          className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 place-items-center gap-4 m-4"
+          className="grid xl:grid-cols-3
+           lg:grid-cols-2 md:grid-cols-2 
+           sm:grid-cols-1 place-items-center gap-4 mx-auto
+          
+           bg-zinc-100"
         >
           {allCountries && !inputText
             ? allCountries.map((country) => {
@@ -94,7 +98,8 @@ function Home() {
       ) : (
         <main
           ref={gridRef}
-          className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 place-items-center gap-4 m-4"
+          className="grid xl:grid-cols-3 lg:grid-cols-2
+           md:grid-cols-2 sm:grid-cols-1 place-items-center gap-4 mx-auto"
         >
           {countryByRegion.map((country) => {
             return (
