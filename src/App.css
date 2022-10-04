@@ -25,15 +25,33 @@ nav {
   justify-content: space-between;
   padding: 2rem;
 }
-#nav-title{
-  font-weight: 800;
-}
-#dark-mode{
+
+#dark-mode {
   font-weight: 600;
 }
-.inputs-component{
+#card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+#card p {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+#card strong {
+  font-size: 1rem;
+}
+.inputs-component {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: 2rem;
+}
+#big-flag {
+  /* max-width: 500px;
+  max-height: 500px; */
+  background-color: yellowgreen;
+}
+#big-flag img {
+  display: block;
+  width: 100%;
 }

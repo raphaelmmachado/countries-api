@@ -1,10 +1,11 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-
 function CardComponent({ name, image, region, capital, population }) {
+  const navigate = useNavigate();
   const styles = {
     cardImgStyles: {
       width: "345px",
@@ -13,7 +14,13 @@ function CardComponent({ name, image, region, capital, population }) {
   };
 
   return (
-    <Card sx={{ width: 345, height: 335}} raised={true}>
+    <Card
+      sx={{ maxWidth: 345, height: 335 }}
+      raised={true}
+      id="card"
+  
+      onClick={() => navigate(`/country/${name.toLowerCase().split(" ").join("-")}`)}
+    >
       <CardMedia
         component="img"
         image={image}
@@ -21,23 +28,20 @@ function CardComponent({ name, image, region, capital, population }) {
         alt={name}
       />
       <CardContent>
-        <Typography
-          variant="h2"
-          component="div"
-          style={{ fontSize: "135%", fontWeight: "bold" }}
-        >
-          {name.length > 25 ? `${name.substring(0, 26)}...` : name}
+        <Typography variant="h2" component="h2" id="card-title">
+          {name}
+          {/* {name.length > 25 ? `${name.substring(0, 26)}...` : name} */}
         </Typography>
         <br />
-        <Typography variant="body1">
+        <Typography variant="body1" component="p">
           Population:
           <strong> {population}</strong>
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" component="p">
           Region:
           <strong> {region}</strong>
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" component="p">
           Capital:
           <strong> {capital}</strong>
         </Typography>
