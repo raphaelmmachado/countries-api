@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 :root {
   --Dark-Blue: hsl(209, 23%, 22%);
   --Very-Dark-Blue: hsl(207, 26%, 17%);

@@ -37,18 +37,18 @@ function IndividualCountry() {
 
       {country && country.name && country.flags && country.languages && (
         <section
-          className="flex flex-row items-center
+          className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col xxsm:flex-col items-center
          justify-center gap-4 min-w-full mt-4"
         >
           <figure id="big-flag" className="">
-            <img src={country.flags.svg} alt="flag" />
+            <img src={country.flags.svg} alt="flag" className="sm:block"/>
           </figure>
           <div className="flex flex-col">
             <h3 className="text-[2.5rem] font-bold mb-4">
               {country.name.common}
             </h3>
-            <div className="flex flex-row gap-8">
-              <div className="leading-8">
+            <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-2 ">
+              <div className="leading-8 max-w-[320px] ">
                 <p>
                   <span className="font-bold">Oficial name:</span>{" "}
                   {country.name.official}
@@ -74,7 +74,7 @@ function IndividualCountry() {
                   <span className="font-bold">Capital: </span> {country.capital}
                 </p>
               </div>
-              <div className="leading-8">
+              <div className="leading-8 max-w-[280px] ">
                 <p>
                   <span className="font-bold">Currencies: </span>
                   {Object.values(country.currencies).map(
