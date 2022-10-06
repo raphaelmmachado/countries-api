@@ -13,7 +13,9 @@ function Home() {
 		showRegionComponent,
 		setShowRegionComponent,
 	} = useContext(Context);
-	const [allCountries, setAllCountries] = useState([]);
+	const [allCountries, setAllCountries] = useState(
+		JSON.parse(sessionStorage.getItem("allCountries"))
+	);
 	const [countryByName, setCountryByName] = useState([]);
 	const [countryByRegion, setCountryByRegion] = useState([]);
 	const [spinner, setSpinner] = useState(false);
@@ -22,7 +24,9 @@ function Home() {
 
 	useEffect(() => {
 		reset();
-		getData();
+		if (allCountries.length < 1) {
+			getData();
+		}
 	}, []);
 
 	//if types on input, run this function
@@ -55,7 +59,7 @@ function Home() {
 		try {
 			const url = "https://restcountries.com/v3.1/all";
 			const { data } = await axios(url);
-			setAllCountries(data);
+			sessionStorage.setItem("allCountries", JSON.stringify(data));
 		} catch (error) {
 			console.error(error);
 		}
@@ -70,7 +74,6 @@ function Home() {
 
 	return (
 		<>
-			{" "}
 			{showRegionComponent === false ? (
 				<main
 					ref={gridRef}
@@ -79,39 +82,43 @@ function Home() {
            sm:grid-cols-1 place-items-center min-h-screen
            gap-4 pt-4 mx-auto bg-zinc-100 dark:bg-zinc-900"
 				>
-					{allCountries && !inputText
-						? allCountries.map((country) => {
-								return (
-									<CardComponent
-										key={country.name.common}
-										name={country.name.common}
-										image={country.flags.svg}
-										imagepng={country.flags.png}
-										capital={country.capital && country.capital[0]}
-										region={country.region}
-										population={country.population}
-									/>
-								);
-						  })
-						: countryByName.map((country) => {
-								return (
-									<CardComponent
-										key={country.name.common}
-										name={country.name.common}
-										image={country.flags.svg}
-										imagepng={country.flags.png}
-										capital={country.capital && country.capital[0]}
-										region={country.region}
-										population={country.population}
-									/>
-								);
-						  })}
+					<>
+						{allCountries && !inputText
+							? allCountries.map((country) => {
+									return (
+										<CardComponent
+											key={country.name.common}
+											name={country.name.common}
+											image={country.flags.svg}
+											imagepng={country.flags.png}
+											capital={country.capital && country.capital[0]}
+											region={country.region}
+											population={country.population}
+										/>
+									);
+							  })
+							: countryByName.map((country) => {
+									return (
+										<CardComponent
+											key={country.name.common}
+											name={country.name.common}
+											image={country.flags.svg}
+											imagepng={country.flags.png}
+											capital={country.capital && country.capital[0]}
+											region={country.region}
+											population={country.population}
+										/>
+									);
+							  })}
+					</>{" "}
 				</main>
 			) : (
 				<main
 					ref={gridRef}
-					className="grid xl:grid-cols-3 lg:grid-cols-2
-           md:grid-cols-2 sm:grid-cols-1 place-items-center gap-4 mx-auto bg-zinc-100 dark:bg-zinc-800"
+					className="grid xl:grid-cols-3
+					lg:grid-cols-2 md:grid-cols-2 
+					sm:grid-cols-1 place-items-center min-h-screen
+					gap-4 pt-4 mx-auto bg-zinc-100 dark:bg-zinc-900"
 				>
 					{countryByRegion.map((country) => {
 						return (

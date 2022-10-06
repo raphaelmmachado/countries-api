@@ -28,10 +28,11 @@ body {
   justify-content: space-between;
   padding: 1.4rem;
 }
-/* width and height can have +20px*/
+
 .card{
-  width: 360px;
-  height: 315px;
+  width: 360px;  
+  min-height: 315px;
+  max-height: 335px;
 }
 .card-image{
   max-height: 180px;
