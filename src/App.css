@@ -16,29 +16,25 @@ body {
   background-color: var(--Very-Light-Gray);
 }
 
-nav {
+.nav-component {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 2rem;
 }
-
-#dark-mode {
-  font-weight: 600;
-}
-
 .inputs-component {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.4rem;
 }
+/* width and height can have +20px*/
 .card{
-  width: 380px;
-  height: 335px;
+  width: 360px;
+  height: 315px;
 }
 .card-image{
-  max-height: 200px;
+  max-height: 180px;
   aspect-ratio:auto;
   display: block;
   width: 100%;
@@ -55,4 +51,7 @@ nav {
 #big-flag img {
   display: block;
   width: 100%;
+}
+.icon:hover{
+  color: aqua !important;
 }
