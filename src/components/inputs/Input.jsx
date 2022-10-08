@@ -14,8 +14,8 @@ function Input() {
         <input
           id="search"
           className="mx-1 border-2 bg-zinc-100 dark:bg-zinc-800
-          border-zinc-200 dark:border-zinc-700
-          rounded-md p-1"
+          border-zinc-400 dark:border-zinc-700
+          rounded-md p-1 text-zinc-800 dark:text-zinc-50"
           type="text"
           placeholder="Search for a country..."
           onChange={(e) => {
@@ -25,7 +25,7 @@ function Input() {
           }}
         />
       </div>
-      <div className='shadow-sm  bg-zinc-50 dark:bg-zinc-800 rounded-md p-1 flex items-center'>
+      <div className='select-box shadow-sm  bg-zinc-50 dark:bg-zinc-800 rounded-md p-1 flex items-center'>
         <label htmlFor="select"
         className='text-zinc-800 dark:text-zinc-50
         text-md font-semibold px-1'>
