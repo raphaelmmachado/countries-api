@@ -96,20 +96,16 @@ const { darkMode,setDarkMode } = useContext(Context);
 		 }
 };
 
-	<button
-				onClick={handleDarkMode}
-				className="flex flex-row bg-zinc-50
-			dark:bg-zinc-800 items-center align-middle
-			justify-center rounded-md pr-2
-       		shadow-md text-sm font-light dark:text-zinc-50"
-			>
+	<button	onClick={handleDarkMode} className="flex flex-row bg-zinc-50 
+	dark:bg-zinc-800 items-center align-middle justify-center rounded-md pr-2
+	shadow-md text-sm font-light dark:text-zinc-50">
 				{!darkMode ? (
 					<FaMoon color="black" size="16px" className="mx-2" />
 				) : (
 					<FaSun color="white" size="16px" className="mx-2" />
 				)}
 				{darkMode ? "Light Mode" : "Dark Mode"}
-			</button>
+	</button>
 ```
 
 ### Continued development
