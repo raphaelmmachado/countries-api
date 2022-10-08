@@ -17,7 +17,6 @@ function CardComponent({
   region,
   capital,
   population,
-  portuguese,
 }) {
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const { setInputText } = useContext(Context);
@@ -60,9 +59,6 @@ function CardComponent({
         <div className="card-content-row font-semibold flex flex-row justify-between w-full">
           {windowSize.innerWidth > 375 && (
             <div className="text-md font-semibold ">
-              <p>
-                Em português: <span> {portuguese}</span>
-              </p>
               <p>
                 Population:
                 <span>

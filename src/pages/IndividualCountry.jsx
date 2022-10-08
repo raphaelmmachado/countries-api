@@ -137,19 +137,10 @@ function IndividualCountry() {
                   <span className="font-bold">Capital: </span>
                   {Object.values(country.capital).map((keys) => `${keys} `)}
                 </p>
+               
                 <div className="font-bold">
-                  Languages:
-                  <div className="flex flex-row">
-                    {Object.values(country.languages).map((key) => (
-                      <div className="px-[1px] mx-1 rounded-sm bg-zinc-300 dark:bg-zinc-500 text-zinc-800">
-                        {key}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="font-semibold">
                   Currencies:{"  "}
-                  <div className="inline-block">
+                  <div className="font-semibold inline-block">
                     {Object.values(country.currencies).map((key) => (
                       <div>
                         {key.name}{" "}
@@ -164,6 +155,19 @@ function IndividualCountry() {
                   <span className="font-bold">Demonyms: </span>{" "}
                   {country.demonyms.eng.m}
                 </p>
+                <p className="font-bold">
+                Em português: <span className="font-semibold"> {country.translations.por.common}</span>
+              </p>
+              <div className="font-bold">
+                  Languages:
+                  <div className="flex flex-row">
+                    {Object.values(country.languages).map((key) => (
+                      <div className="px-[1px] mx-1 rounded-sm bg-zinc-300 dark:bg-zinc-500 text-zinc-800">
+                        {key}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
               {/* INNER COL RIGHT */}
               <div className="leading-8 max-w-[280px] ">
@@ -179,6 +183,31 @@ function IndividualCountry() {
                       className="bg-zinc-100 dark:bg-zinc-800 max-w-[150px]"
                     />
                   }
+                </p>
+                
+                <p className="font-bold">
+                  {country.independent ? "independent" : "Not independent"}
+                </p>
+                <p className="font-bold">
+                  {country.unMember ? "UN member" : "not UN member"}
+                </p>
+                <p className="font-semibold">
+                  <span className="font-bold">Population: </span>{" "}
+                  {
+                    <NumericFormat
+                      value={country.population}
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      className="bg-zinc-100 dark:bg-zinc-800 max-w-[150px]"
+                    />
+                  }
+                </p>
+                <p className="font-semibold">
+                  <span className="font-bold">Region:</span> {country.region}
+                </p>
+                <p className="font-semibold">
+                  <span className="font-bold">Sub-Region:</span>{" "}
+                  {country.subregion}
                 </p>
                 {country.borders ? (
                   <div className="font-bold">
@@ -210,30 +239,6 @@ function IndividualCountry() {
                     <span className="font-bold">Is island</span>
                   </p>
                 )}
-                <p className="font-bold">
-                  {country.independent ? "independent" : "Not independent"}
-                </p>
-                <p className="font-bold">
-                  {country.unMember ? "UN member" : "not UN member"}
-                </p>
-                <p className="font-semibold">
-                  <span className="font-bold">Population: </span>{" "}
-                  {
-                    <NumericFormat
-                      value={country.population}
-                      thousandSeparator="."
-                      decimalSeparator=","
-                      className="bg-zinc-100 dark:bg-zinc-800 max-w-[150px]"
-                    />
-                  }
-                </p>
-                <p className="font-semibold">
-                  <span className="font-bold">Region:</span> {country.region}
-                </p>
-                <p className="font-semibold">
-                  <span className="font-bold">Sub-Region:</span>{" "}
-                  {country.subregion}
-                </p>
               </div>
             </div>
           </div>

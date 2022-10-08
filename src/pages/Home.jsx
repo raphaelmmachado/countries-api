@@ -109,7 +109,7 @@ function Home() {
                       capital={country.capital && country.capital[0]}
                       region={country.region}
                       population={country.population}
-                      portuguese={country.translations.por.common}
+                     
                     />
                   );
                 })
