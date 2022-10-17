@@ -20,12 +20,23 @@ function IndividualCountry() {
 
   const getData = async () => {
     try {
-      const response = await axios(
+      const { data } = await axios(
         `https://restcountries.com/v3.1/name/${slug.split("-").join(" ")}`
       );
-      setCountry(response.data[0]);
+      data && loadCountry(data);
     } catch (error) {
       console.error(error);
+    }
+  };
+  const loadCountry = (data) => {
+    if (data.length > 1) {
+      const filteredCountry = data.filter(
+        (country) =>
+          country.name.common.toLowerCase() === slug.split("-").join(" ")
+      );
+      setCountry(filteredCountry[0]);
+    } else {
+      setCountry(data[0]);
     }
   };
   const borderCountries = async (code) => {
@@ -39,6 +50,7 @@ function IndividualCountry() {
       console.error(error);
     }
   };
+  console.log(country);
   return (
     <main className="p-2 bg-zinc-100 dark:bg-zinc-800 min-h-screen">
       <div
@@ -173,17 +185,25 @@ function IndividualCountry() {
                     {country.translations.por.common}
                   </span>
                 </p>
-                <div className="font-bold">
+                <div className="font-bold flex flex-row flex-wrap items-center justify-evenly">
                   Languages:
-                  <div className="flex flex-row items-center ">
-                    {Object.values(country.languages).map((key) => (
-                      <div
-                        className="px-[1px] mx-1 rounded-sm
-                       bg-zinc-300 dark:bg-zinc-500 text-zinc-800"
-                      >
-                        {key}
-                      </div>
-                    ))}
+                  <div
+                    className="px-[1px] mx-1 rounded-sm
+                       text-zinc-800 dark:text-zinc-50"
+                  >
+                    {Object.values(country.languages)[0]}
+                  </div>
+                  <div
+                    className="px-[1px] mx-1 rounded-sm
+                       text-zinc-800 dark:text-zinc-50"
+                  >
+                    , {Object.values(country.languages)[1]}
+                  </div>
+                  <div
+                    className="px-[1px] mx-1 rounded-sm
+                       text-zinc-800 dark:text-zinc-50"
+                  >
+                    and {Object.values(country.languages)[2]}
                   </div>
                 </div>
               </div>

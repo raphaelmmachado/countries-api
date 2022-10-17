@@ -10,14 +10,7 @@ const getWindowSize = () => {
   return { innerWidth, innerHeight };
 };
 
-function CardComponent({
-  name,
-  image,
-  imagepng,
-  region,
-  capital,
-  population,
-}) {
+function CardComponent({ name, image, imagepng, region, capital, population }) {
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const { setInputText } = useContext(Context);
   const navigate = useNavigate();
@@ -32,7 +25,6 @@ function CardComponent({
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  console.log(windowSize);
 
   return (
     //card element
