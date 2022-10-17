@@ -5,8 +5,6 @@ import { CardComponent } from "../components/card/Card.jsx";
 import { Context } from "../context/ContextProvider.jsx";
 import SyncLoader from "react-spinners/SyncLoader";
 
-
-
 function Home() {
   // Contexto
   const {
@@ -21,7 +19,6 @@ function Home() {
   const [countryByName, setCountryByName] = useState([]);
   const [countryByRegion, setCountryByRegion] = useState([]);
   const [spinner, setSpinner] = useState(false);
-  
 
   // ref to use animation
   const [gridRef] = useAutoAnimate();
@@ -31,7 +28,7 @@ function Home() {
       getData();
     }
   }, []);
- 
+
   //if types on input, run this function
   useEffect(() => {
     filterCountriesByName();
@@ -87,7 +84,7 @@ function Home() {
       <SyncLoader
         loading={spinner}
         color={darkMode ? "#FFFFFF" : "#18181B"}
-        className="spinner dark:bg-zinc-900 bg-zinc-100 text-center"
+        className="spinner bg-transparent"
       />
       {showRegionComponent === false ? (
         <main
@@ -95,7 +92,7 @@ function Home() {
           className="home-component grid xl:grid-cols-3
            lg:grid-cols-2 md:grid-cols-2 
            sm:grid-cols-1 place-items-center min-h-screen
-           gap-4 pt-4 mx-auto bg-zinc-100 dark:bg-zinc-900 relative xxsm:min-h-fit"
+           gap-4 pt-4 mx-auto bg-transparent relative xxsm:min-h-fit"
         >
           <>
             {allCountries && !inputText
@@ -109,7 +106,6 @@ function Home() {
                       capital={country.capital && country.capital[0]}
                       region={country.region}
                       population={country.population}
-                     
                     />
                   );
                 })
@@ -134,7 +130,7 @@ function Home() {
           className="grid xl:grid-cols-3
 					lg:grid-cols-2 md:grid-cols-2 
 					sm:grid-cols-1 place-items-center min-h-screen
-					gap-4 pt-4 mx-auto bg-zinc-100 dark:bg-zinc-900  "
+					gap-4 pt-4 mx-auto bg-transparent  "
         >
           {countryByRegion.map((country) => {
             return (

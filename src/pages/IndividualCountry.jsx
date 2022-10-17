@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 import { MdLocationPin } from "react-icons/md";
 import { FaWikipediaW } from "react-icons/fa";
@@ -11,11 +11,12 @@ import { NumericFormat } from "react-number-format";
 function IndividualCountry() {
   const { darkMode } = useContext(Context);
   const [country, setCountry] = useState([]);
-  const [showFlagName,setShowFlagName] = useState(false)
+  const [showFlagName, setShowFlagName] = useState(false);
   const { slug } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
-  }, []);
+  }, [slug]);
 
   const getData = async () => {
     try {
@@ -27,7 +28,17 @@ function IndividualCountry() {
       console.error(error);
     }
   };
-
+  const borderCountries = async (code) => {
+    try {
+      const { data } = await axios(
+        `https://restcountries.com/v3.1/alpha/${code}`
+      );
+      const slug = data[0].name.common.toLowerCase().split(" ").join("-");
+      navigate(`/country/${slug}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <main className="p-2 bg-zinc-100 dark:bg-zinc-800 min-h-screen">
       <div
@@ -137,7 +148,7 @@ function IndividualCountry() {
                   <span className="font-bold">Capital: </span>
                   {Object.values(country.capital).map((keys) => `${keys} `)}
                 </p>
-               
+
                 <div className="font-bold">
                   Currencies:{"  "}
                   <div className="font-semibold inline-block">
@@ -156,13 +167,20 @@ function IndividualCountry() {
                   {country.demonyms.eng.m}
                 </p>
                 <p className="font-bold">
-                Em português: <span className="font-semibold"> {country.translations.por.common}</span>
-              </p>
-              <div className="font-bold">
+                  Em português:{" "}
+                  <span className="font-semibold">
+                    {" "}
+                    {country.translations.por.common}
+                  </span>
+                </p>
+                <div className="font-bold">
                   Languages:
-                  <div className="flex flex-row">
+                  <div className="flex flex-row items-center ">
                     {Object.values(country.languages).map((key) => (
-                      <div className="px-[1px] mx-1 rounded-sm bg-zinc-300 dark:bg-zinc-500 text-zinc-800">
+                      <div
+                        className="px-[1px] mx-1 rounded-sm
+                       bg-zinc-300 dark:bg-zinc-500 text-zinc-800"
+                      >
                         {key}
                       </div>
                     ))}
@@ -184,7 +202,7 @@ function IndividualCountry() {
                     />
                   }
                 </p>
-                
+
                 <p className="font-bold">
                   {country.independent ? "independent" : "Not independent"}
                 </p>
@@ -212,23 +230,28 @@ function IndividualCountry() {
                 {country.borders ? (
                   <div className="font-bold">
                     Border:
-                    <div onMouseEnter={()=> setShowFlagName(true)}
-						onMouseLeave={()=> setShowFlagName(false)}
-                      className="flex flex-row gap-1 justify-around
-                    dark:bg-zinc-800 p-1 rounded-sm shadow-sm"
+                    <div
+                      onMouseEnter={() => setShowFlagName(true)}
+                      onMouseLeave={() => setShowFlagName(false)}
+                      className="flex flex-row flex-wrap items-center justify-around
+                    dark:bg-zinc-800 p-1 rounded-sm shadow-sm gap-2"
                     >
                       {country.borders.map((code) => {
                         return (
-                          <div className="relative cursor-default" 
-						  >
-                            {showFlagName && <div className="absolute top-5 text-sm text-blue-500"></div> }
-                              <img
-                                key={code}
-                                width="30px"
-                                src={`https://countryflagsapi.com/svg/${code.toLowerCase()}`}
-                                alt={`flag of ${code}`}
-                              />
-							  <div className="text-xs font-light">{code}</div>
+                          <div
+                            className="relative cursor-pointer"
+                            onClick={() => borderCountries(code)}
+                          >
+                            {showFlagName && (
+                              <div className="absolute top-5 text-sm text-blue-500"></div>
+                            )}
+                            <img
+                              key={code}
+                              width="30px"
+                              src={`https://countryflagsapi.com/svg/${code.toLowerCase()}`}
+                              alt={`flag of ${code}`}
+                            />
+                            <div className="text-xs font-light">{code}</div>
                           </div>
                         );
                       })}

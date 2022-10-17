@@ -12,9 +12,6 @@
   margin: 0;
   font-size: 16px;
 }
-body {
-  background-color: var(--Very-Light-Gray);
-}
 
 .nav-component {
   display: flex;
