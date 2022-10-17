@@ -51,20 +51,21 @@ function IndividualCountry() {
   };
   console.log(country);
   return (
-    <main className="p-2 bg-zinc-100 dark:bg-zinc-800 min-h-screen">
+    <main className="p-2  min-h-screen bg-zinc-200 dark:bg-zinc-800">
       <div
-        className="max-w-[80px] dark:shadow-md dark:bg-zinc-700
+        className="max-w-[80px] dark:shadow-md dark:bg-zinc-700 bg-zinc-100
        border-stone-900 px-2 ml-6 rounded-md"
       >
         <Link to="/">
           <div
             className="flex flex-row
            items-center justify-center align-middle
-           shadow-sm"
+           shadow-sm bg-zinc-50 dark:bg-zinc-700"
           >
             <GoArrowLeft color={darkMode ? "white" : "black"} />
             <div
               className="font-bold text-zinc-800 dark:text-zinc-100
+              
              "
             >
               Back
@@ -82,7 +83,7 @@ function IndividualCountry() {
           <section
             className="flex lg:flex-row md:flex-col 
           sm:flex-col xs:flex-col xxsm:flex-col items-center
-          justify-center gap-4 min-w-full mt-4 mx-auto bg-zinc-50 dark:bg-zinc-800"
+          justify-center gap-4 min-w-full mt-4 mx-auto  "
           >
             {/* LEFT COL */}
             <div className="flex flex-col">
@@ -98,7 +99,7 @@ function IndividualCountry() {
               <div
                 className="flex flex-row items-center align-middle
               justify-between shadow-xl rounded-md p-2 border-1 dark:border-0
-              border-zinc-100 dark:border-zinc-800 mt-2"
+              border-zinc-50 dark:border-zinc-800 mt-2 bg-zinc-50 dark:bg-zinc-900"
               >
                 <a href={country.maps.googleMaps} target="_blank">
                   {" "}
@@ -138,7 +139,7 @@ function IndividualCountry() {
               </div>
             </div>
             {/* RIGHT COL */}
-            <div className="flex flex-col shadow-md text-zinc-800 dark:text-zinc-50 p-4 rounded-md">
+            <div className="flex flex-col bg-zinc-100 dark:bg-zinc-900 shadow-md text-zinc-800 dark:text-zinc-50 p-4 rounded-md">
               {/* INNER COL */}
               <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-4 ">
                 {/* INNER COL LEFT*/}
@@ -212,7 +213,7 @@ function IndividualCountry() {
                         thousandSeparator="."
                         decimalSeparator=","
                         suffix=" km²"
-                        className="bg-zinc-100 dark:bg-zinc-800 max-w-[150px]"
+                        className="bg-zinc-100 dark:bg-zinc-900 max-w-[150px]"
                       />
                     }
                   </p>
@@ -230,7 +231,7 @@ function IndividualCountry() {
                         value={country.population}
                         thousandSeparator="."
                         decimalSeparator=","
-                        className="bg-zinc-100 dark:bg-zinc-800 max-w-[150px]"
+                        className="bg-zinc-100 dark:bg-zinc-900 max-w-[150px]"
                       />
                     }
                   </p>
@@ -244,10 +245,7 @@ function IndividualCountry() {
                   {country.borders ? (
                     <div className="flex flex-col items-center justify-center">
                       <div>Border</div>
-                      <div
-                        className="flex flex-row flex-wrap items-center justify-around
-                    dark:bg-zinc-800 p-1 rounded-sm shadow-sm gap-2"
-                      >
+                      <div className="grid grid-cols-4 gap-4 dark:bg-zinc-900 p-1 rounded-sm shadow-sm ">
                         {country.borders.map((code) => {
                           return (
                             <div

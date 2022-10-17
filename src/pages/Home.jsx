@@ -84,7 +84,7 @@ function Home() {
       <SyncLoader
         loading={spinner}
         color={darkMode ? "#FFFFFF" : "#18181B"}
-        className="spinner bg-transparent"
+        className="spinner bg-transparent text-center"
       />
       {showRegionComponent === false ? (
         <main
