@@ -28,17 +28,7 @@ Users should be able to:
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
 
-### Screenshot
 
-![Home Light Desktop](https://prnt.sc/ih68Rchd_sFQ)
-![Home Light Mobile](https://prnt.sc/LxLFa1MOZmpS)
-![Details Light Mobile](https://prnt.sc/nC7Jn4Wy1c6i)
-![Details Light Desktop](https://prnt.sc/HX6LKjH_wGy7)
-![Home Dark Desktop](https://prnt.sc/qtKfX3sTXtnU)
-![Home Dark Mobile](https://prnt.sc/nQiM7NtoFJCo)
-![Details Dark Desktop](https://prnt.sc/nz9VIi8ev_fv)
-![Details Dark Mobile](https://prnt.sc/_dMKosk7lfxE)
-![screenshot]("./screenshot.png")
 
 ### Links
 - Solution URL: [Github repo](https://github.com/rm0909/countries-api)
