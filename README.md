@@ -6,7 +6,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -100,11 +99,15 @@ const { darkMode,setDarkMode } = useContext(Context);
 
 ### Continued development
 
-I need to get better at building layouts
-Learn advanced css techniques
-Learn advanced react hooks
-Learn typescript
-Learn Next.js
+ I need to get better at building layouts  
+ 
+ Learn advanced css techniques
+ 
+ Learn advanced react hooks
+ 
+ Learn typescript
+ 
+ Learn Next.js
 
 ### Useful resources
 - [How to lazy load images in react](https://www.freecodecamp.org/news/how-to-lazy-load-images-in-react/) - FreeCodeCamp article
