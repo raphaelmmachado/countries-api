@@ -101,7 +101,7 @@ const { darkMode,setDarkMode } = useContext(Context);
 ### Continued development
 
 I need to get better at building layouts
-Learn advanced css technics
+Learn advanced css techniques
 Learn advanced react hooks
 Learn typescript
 Learn Next.js
