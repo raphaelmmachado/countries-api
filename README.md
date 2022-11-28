@@ -119,5 +119,4 @@ const { darkMode,setDarkMode } = useContext(Context);
 
 - Website - [Raphael Machado](https://rm0909portfolio.netlify.app/)
 - Frontend Mentor - [@rm0909](https://www.frontendmentor.io/profile/rm0909)
-- Twitter - [@raphaelmmDev](https://www.twitter.com/raphaelmmDev)
 
