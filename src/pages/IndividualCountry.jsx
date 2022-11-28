@@ -1,20 +1,36 @@
 import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
-import { MdLocationPin } from "react-icons/md";
-import { FaWikipediaW } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { Context } from "../context/ContextProvider.jsx";
-import { NumericFormat } from "react-number-format";
+import { MainFlag } from "../components/Individual_Country/main_flag/MainFlag.jsx";
+import { CommonName } from "../components/Individual_Country/common_name/CommonName.jsx";
+import { Links } from "../components/Individual_Country/links/Links.jsx";
+import { NativeName } from "../components/Individual_Country/native_name/NativeName.jsx";
+import { Capital } from "../components/Individual_Country/capital/Capital.jsx";
+import { Currencies } from "../components/Individual_Country/currencies/Currencies.jsx";
+import { Demonyms } from "../components/Individual_Country/demonyms/Demonyms.jsx";
+import { InPortuguese } from "../components/Individual_Country/em_portugues/InPortuguese.jsx";
+import { Languages } from "../components/Individual_Country/country_languages/Languages.jsx";
+import { Area } from "../components/Individual_Country/country_area/Area.jsx";
+import { Population } from "../components/Individual_Country/country_population/Population.jsx";
+import { CountryName } from "../components/Individual_Country/countryName/CountryName";
+import { Independent } from "../components/Individual_Country/country_independent/Independent.jsx";
+import { UnMember } from "../components/Individual_Country/country_un_member/UnMember.jsx";
+import { Region } from "../components/Individual_Country/country_region/Region.jsx";
+import { SubRegion } from "../components/Individual_Country/country_sub_region/SubRegion.jsx";
+import { Borders } from "../components/Individual_Country/country_borders/Borders.jsx";
+import { Island } from "../components/Individual_Country/IsIsland/Island.jsx";
+import { CoatOfArms } from "../components/Individual_Country/coat_of_arms/CoatOfArms.jsx";
 
 function IndividualCountry() {
   const { darkMode } = useContext(Context);
   const [country, setCountry] = useState([]);
   const { slug } = useParams();
-  const navigate = useNavigate();
+
   useEffect(() => {
-    getData();
+    getData().then((res) => loadCountry(res));
   }, [slug]);
 
   const getData = async () => {
@@ -22,11 +38,12 @@ function IndividualCountry() {
       const { data } = await axios(
         `https://restcountries.com/v3.1/name/${slug.split("-").join(" ")}`
       );
-      data && loadCountry(data);
+      return data;
     } catch (error) {
       console.error(error);
     }
   };
+
   const loadCountry = (data) => {
     if (data.length > 1) {
       const filteredCountry = data.filter(
@@ -38,36 +55,21 @@ function IndividualCountry() {
       setCountry(data[0]);
     }
   };
-  const borderCountries = async (code) => {
-    try {
-      const { data } = await axios(
-        `https://restcountries.com/v3.1/alpha/${code}`
-      );
-      const slug = data[0].name.common.toLowerCase().split(" ").join("-");
-      navigate(`/country/${slug}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  console.log(country);
+  console.log(country.coatOfArms);
   return (
     <main className="p-2  min-h-screen bg-zinc-200 dark:bg-zinc-800">
       <div
         className="max-w-[80px] dark:shadow-md dark:bg-zinc-700 bg-zinc-100
-       border-stone-900 px-2 ml-6 rounded-md"
+       border-stone-900 px-2 ml-6 rounded-md shadow-md"
       >
         <Link to="/">
           <div
             className="flex flex-row
            items-center justify-center align-middle
-           shadow-sm bg-zinc-50 dark:bg-zinc-700"
+            bg-zinc-50 dark:bg-zinc-700"
           >
             <GoArrowLeft color={darkMode ? "white" : "black"} />
-            <div
-              className="font-bold text-zinc-800 dark:text-zinc-100
-              
-             "
-            >
+            <div className="font-bold text-zinc-800 dark:text-zinc-100 ">
               Back
             </div>
           </div>
@@ -77,9 +79,7 @@ function IndividualCountry() {
       {country && country.name && country.flags && country.languages && (
         //COMPONENT
         <main className="flex flex-col items-center justify-center">
-          <h1 className="text-center text-zinc-800 dark:text-zinc-50 text-[3rem] font-bold">
-            {country.name.official}
-          </h1>
+          <CountryName name={country.name.official} />
           <section
             className="flex lg:flex-row md:flex-col 
           sm:flex-col xs:flex-col xxsm:flex-col items-center
@@ -88,55 +88,12 @@ function IndividualCountry() {
             {/* LEFT COL */}
             <div className="flex flex-col">
               {/* COUNTRY FLAG */}
-              <figure id="big-flag">
-                <img
-                  src={country.flags.svg}
-                  alt="flag"
-                  className="sm:block rounded-sm"
-                />
-              </figure>
+              <MainFlag flag={country.flags.svg} />
               {/* LINKS */}
-              <div
-                className="flex flex-row items-center align-middle
-              justify-between shadow-xl rounded-md p-2 border-1 dark:border-0
-              border-zinc-50 dark:border-zinc-800 mt-2 bg-zinc-50 dark:bg-zinc-900"
-              >
-                <a href={country.maps.googleMaps} target="_blank">
-                  {" "}
-                  <div
-                    className="flex flex-row align-middle
-               items-center w-fit"
-                  >
-                    <MdLocationPin size={24} color="red" className="icon" />
-                    <p className="text-lg ml-2">
-                      <span
-                        className="text-lg font-semibold text-blue-800
-										dark:text-blue-600 hover:text-blue-600"
-                      >
-                        Location
-                      </span>
-                    </p>
-                  </div>
-                </a>
-                <a
-                  className="text-blue-800 ml-2 align-middle "
-                  href={`https://en.wikipedia.org/wiki/${country.name.common}`}
-                  target="_blank"
-                >
-                  <div
-                    className="flex flex-row w-fit
-                items-center align-middle"
-                  >
-                    <FaWikipediaW size={24} color="steelblue" />
-                    <span
-                      className="text-lg text-blue-800 font-semibold
-                 dark:text-blue-600 hover:text-blue-600"
-                    >
-                      ikipedia
-                    </span>
-                  </div>
-                </a>
-              </div>
+              <Links
+                googleMaps={country.maps.googleMaps}
+                name={country.name.common}
+              />
             </div>
             {/* RIGHT COL */}
             <div className="flex flex-col bg-zinc-100 dark:bg-zinc-900 shadow-md text-zinc-800 dark:text-zinc-50 p-4 rounded-md">
@@ -144,131 +101,28 @@ function IndividualCountry() {
               <div className="flex lg:flex-row  xs:flex-col xxsm:flex-col gap-4 ">
                 {/* INNER COL LEFT*/}
                 <div className="leading-8 max-w-[320px] ">
-                  <p className="font-semibold">
-                    <span className="font-bold">Common name:</span>{" "}
-                    {country.name.common}
-                  </p>
-
-                  <p className="font-semibold">
-                    <span className="font-bold">Native name: </span>
-                    <em>
-                      {Object.values(country.name.nativeName).map(
-                        (key) => `${key.common} `
-                      )}
-                    </em>
-                  </p>
-                  <p className="font-semibold">
-                    <span className="font-bold">Capital: </span>
-                    {Object.values(country.capital).map((keys) => `${keys} `)}
-                  </p>
-
-                  <div className="font-bold">
-                    Currencies:{"  "}
-                    <div className="font-semibold inline-block">
-                      {Object.values(country.currencies).map((key) => (
-                        <div>
-                          {key.name}{" "}
-                          <span className="bg-green-600 p-1 text-sm inline">
-                            {key.symbol}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="font-semibold">
-                    <span className="font-bold">Demonyms: </span>{" "}
-                    {country.demonyms.eng.m}
-                  </p>
-                  <p className="font-bold">
-                    Em português:{" "}
-                    <span className="font-semibold">
-                      {" "}
-                      {country.translations.por.common}
-                    </span>
-                  </p>
-                  <div className="font-bold">
-                    <span>
-                      Languages: {Object.values(country.languages)[0]}{" "}
-                      {Object.values(country.languages)[1]}{" "}
-                      {Object.values(country.languages)[2]}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="text-center">Coat Of Arms</div>
-                    <img
-                      src={country.coatOfArms.svg}
-                      alt="coat of arms"
-                      style={{ maxWidth: "100px" }}
-                    />
-                  </div>
+                  <CommonName name={country.name.common} />
+                  <NativeName nativeName={country.name.nativeName} />
+                  <Capital capital={country.capital} />
+                  <Currencies currencies={country.currencies} />
+                  <Demonyms demonyms={country.demonyms.eng.m} />
+                  <InPortuguese translation={country.translations.por.common} />
+                  <Languages languages={country.languages} />
+                  <CoatOfArms coatOfArms={country.coatOfArms.svg} />
                 </div>
                 {/* INNER COL RIGHT */}
                 <div className="leading-8 max-w-[280px] ">
-                  <p className="font-semibold">
-                    <span className="font-bold">Area: </span>{" "}
-                    {
-                      <NumericFormat
-                        value={country.area}
-                        type="text"
-                        thousandSeparator="."
-                        decimalSeparator=","
-                        suffix=" km²"
-                        className="bg-zinc-100 dark:bg-zinc-900 max-w-[150px]"
-                      />
-                    }
-                  </p>
+                  <Area area={country.area} />
+                  <Independent independent={country.independent} />
+                  <UnMember unMember={country.unMember} />
+                  <Population population={country.population} />
+                  <Region region={country.region} />
+                  <SubRegion subRegion={country.subregion} />
 
-                  <p className="font-bold">
-                    {country.independent ? "independent" : "Not independent"}
-                  </p>
-                  <p className="font-bold">
-                    {country.unMember ? "UN member" : "not UN member"}
-                  </p>
-                  <p className="font-semibold">
-                    <span className="font-bold">Population: </span>{" "}
-                    {
-                      <NumericFormat
-                        value={country.population}
-                        thousandSeparator="."
-                        decimalSeparator=","
-                        className="bg-zinc-100 dark:bg-zinc-900 max-w-[150px]"
-                      />
-                    }
-                  </p>
-                  <p className="font-semibold">
-                    <span className="font-bold">Region:</span> {country.region}
-                  </p>
-                  <p className="font-semibold">
-                    <span className="font-bold">Sub-Region:</span>{" "}
-                    {country.subregion}
-                  </p>
                   {country.borders ? (
-                    <div className="flex flex-col items-center justify-center">
-                      <div>Border</div>
-                      <div className="grid grid-cols-4 gap-4 dark:bg-zinc-900 p-1 rounded-sm shadow-sm ">
-                        {country.borders.map((code) => {
-                          return (
-                            <div
-                              className="relative cursor-pointer"
-                              onClick={() => borderCountries(code)}
-                            >
-                              <div className="absolute top-5 text-sm text-blue-500"></div>
-                              <img
-                                key={code}
-                                width="30px"
-                                src={`https://countryflagsapi.com/svg/${code.toLowerCase()}`}
-                                alt={`flag of ${code}`}
-                              />
-                              <div className="text-xs font-light">{code}</div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                    <Borders borders={country.borders} />
                   ) : (
-                    <p>
-                      <span className="font-bold">Is island</span>
-                    </p>
+                    <Island />
                   )}
                 </div>
               </div>
