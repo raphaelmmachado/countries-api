@@ -33,7 +33,7 @@ My implementation:
 - User can click on a link that sends to wikipedia page.
 
 ### Links
-- Solution URL: [Github repo](https://github.com/rm0909/countries-api)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/website-created-with-react-and-tailwind-Gt6iVT_QGp)
 - Live Site URL: [Netlify](https://raphael-countries-api.netlify.app/)
 
 ## My process
