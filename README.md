@@ -27,9 +27,10 @@ Users should be able to:
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode
 
-* My implementation:
+My implementation:
+
 - Users can get country location on google maps.
-- User can click on a link that sends to coutry wikipedia page.
+- User can click on a link that sends to wikipedia page.
 
 ### Links
 - Solution URL: [Github repo](https://github.com/rm0909/countries-api)
