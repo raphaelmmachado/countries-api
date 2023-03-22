@@ -37,7 +37,7 @@ My implementation:
 - Live Site URL: [Netlify](https://raphael-countries-api.netlify.app/)
 
 ## Screenshot
-![screenshot](./screenshot.png)
+![screenshot](./ss.png)
 
 ## My process
 
